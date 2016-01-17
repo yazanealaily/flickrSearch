@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="bower_components/angular-messages/angular-messages.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<title>Flickr Searcher</title>
+</head>
+
+<body ng-controller="myController">
+	
+	<div class="container">
+		
+		<h1 class="text-center">Flickr Searcher</h1>
+
+		<div class="row searchBar">
+		
+		<form name="myForm" novalidate>
+			<div class="col-md-offset-4 col-md-3">
+				<input type="text" ng-model="search" name="userInput" placeholder="{{placeholder}}" required>
+				<div ng-if="myForm.$submitted" ng-messages="myForm.search.$error">
+    				<span class="alert alert-warning" ng-message="required">Field is required!</span>
+				</div>
+			</div>
+
+			<div class="col-md-1">
+				<button class="btn btn-primary" type="submit" ng-click="submit()">Submit</button>	
+			</div>
+		</form><br><br>
+
+		<p class="text-center" ng-model="feedback">{{feedback}}</p>
+
+		</div>
+
+		<div class="row images">
+			<div class="col-md-offset-1 col-md-10 col-md-offset-1">
+
+				<div class="image" ng-repeat="image in images.data.photos.photo">
+					<img ng-src="https://farm{{image.farm}}.staticflickr.com/{{image.server}}/{{image.id}}_{{image.secret}}_m.jpg">
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	
+
+</body>
+
+</html>
